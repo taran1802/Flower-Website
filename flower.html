@@ -1,0 +1,666 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowerss</title>
+</head>
+<style>
+    :root{
+        --pink:#e84393;
+    }
+    *{
+        margin:0;
+        padding: 0;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        text-transform: capitalize;
+        transition: .2s linear;
+    }
+    html{
+        font-size:62.5% ;
+        scroll-behavior: smooth;
+        scroll-padding-top: 6rem;
+        overflow-x: hidden;
+
+    }
+    section{
+        padding: 2rem 9%;
+    }
+    .home{
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+        background: url(flowbg.jpg) no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    .home .content{
+        max-width: 50rem;
+
+
+    }
+    .home .content h3{
+        font-size: 6rem;
+        color: #333;
+    }
+    .home .content  span{
+        font-size: 3.5rem;
+        color:rgb(99, 2, 99);
+        padding: 1rem 0;
+        line-height: 1.5;
+
+    }
+    .btn{
+        display: inline-block;
+        margin-top: 1rem;
+        border-radius: 5rem;
+        background: #333;
+        color: #fff;
+        padding: .9rem 3.5rem;
+        cursor: pointer;
+        font-size: 1.7rem;
+
+    }
+    .btn:hover{
+        background:var(--pink) ;
+    }
+    header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 2rem 9%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index:1000 ;
+        box-shadow: 0.5rem 1rem rgba(0,0,0,.1);
+    }
+    header .logo{
+        font-size: 3rem;
+        color: #333;
+        font-weight: bolder;
+    }
+    header .logo span{
+        color: var(--pink);
+    }
+    header .navbar a{
+        font-size: 2rem;
+        padding: 0 1.5rem;
+        color: #666;
+
+    }
+    .home .content h3{
+        font-size: 5rem;
+    }
+    header .navbar a:hover{
+        color: var(--pink);
+    }
+    header .icons a{
+        font-size: 2.5rem;
+        color: #333;
+        margin-left: 2rem;
+
+    }
+    header .icons a:hover{
+        color: var(--pink);
+    }
+    header #toggler{
+        display: none;
+    }
+    header  .fa-bars{
+        font-size: 3rem;
+        color: #333;
+        border-radius: .5rem;
+        padding: 5rem 1.5rem;
+        cursor: pointer;
+        border: .1rem solid rgba(0,0,0,.3);
+        display: none;
+
+    }
+    .heading{
+        text-align: center;
+        font-size: 4rem;
+        color: #333;
+        padding: 1rem;
+        margin: 2rem 0;
+        background: rgba(255,51,153,.05);
+
+    }
+    .heading span{
+        color: var(--pink);
+    }
+    .about .row{
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        padding: 2rem 0;
+        padding-bottom: 3rem;
+    }
+    .about .row .video-container{
+        flex: 1 1 40rem;
+        position: relative;
+    }
+
+    .about .row .video-container video{
+        width: 100%;
+        border: 1.5rem solid #fff;
+        border-radius: .5rem;
+        box-shadow:0.5rem 1rem rgba(0,0,0,.1) ;
+        
+
+    }
+    .about .row .video-container h3{
+    
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 3rem;
+        width: 100%;
+        background: #fff;
+        padding: 2rem 2rem;
+        text-align: center;
+        mix-blend-mode: screen;
+    }
+    .about .row  .content{
+        flex: 1 1 40rem;
+    }
+    .about .row  .content h3{
+        font-size: 3rem;
+        color: #333;
+
+    }
+    .about .row  .content p{
+      
+        font-size: 1.5rem;
+        color: #999;
+        padding: 5rem 0;
+        padding-top: 1rem;
+        line-height: 1.5;
+        
+    }
+    .icons-container{
+        background: #eee;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+
+    }
+
+    .icons-container  .icons{
+        background: #fff;
+        border:.1rem solid rgba(0,0,0,.1) ;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        flex: 1 1 25rem;
+    }
+    .icons-container .icons img{
+        height: 5rem;
+        margin-right: 2rem;
+
+    }
+    .icons-container  .icons h3{
+        color: #333;
+        padding-bottom: .5rem;
+        font-size: 1.5rem;
+
+    }
+    .icons-container  .icon span{
+        color: #555;
+        font-size:1.3rem ;
+    }
+   
+    .box-container{
+        display: flex;
+    }
+    .box{
+        display: flex;
+    }
+   
+    .products .box-container{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        float: left;
+       
+    }
+    .products .box-container .box{
+        flex: 1 1 30rem;
+        box-shadow: 0.5rem 1.5rem rgba(0,0,0,.1);
+        border-radius: .5rem;
+        border: .1rem solid rgba(0,0,0,.1);
+        position: relative;
+
+        
+    }
+    .products .box-container .box .discount{
+        position: absolute;
+        top: 1rem ;
+        left: 1rem;
+        padding: .7rem 1rem;
+        font-size: 2rem;
+        color: var(--pink);
+        background: rgba(255,51,153,.05);
+        z-index: 1;
+        border-radius: .5rem;
+
+    }
+    .products .box-container .box image{
+        position: relative;
+        text-align: center;
+        padding-top:2rem ;
+        overflow: hidden;
+        float: left;
+
+    }
+    .products .box-container .box .image img{
+        
+        width: 25rem;
+        height: 25rem
+
+    }
+    .products .box-container .box:hover .image img{
+        transform:scale(1.1) ;
+        
+    }
+    .products .box-container .box .image .icons .cart-btn{
+        border-left: .1rem solid #fff7;
+        border-right: .1rem solid #fff7;
+        width: 100%;    
+        
+    }
+    .products .box-container .box .content{
+        padding: 2rem;
+        text-align: center;
+        
+    }
+    .products .box-container .box .content h3{
+        padding: 2.5rem;
+        color: #333;
+        
+    }
+    .products .box-container .box .content .price{
+        padding: 2.5rem;
+        color: var(--pink);
+        font-weight: bolder;
+        padding-top: 1rem;
+
+        
+    }
+    .products .box-container .box .content .price span{
+        padding: 1.5rem;
+        color: #999;
+        font-weight: lighter;
+        text-decoration:line-through ;
+        
+        
+    }
+    .review .box-container{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+    .review .box-container .box{
+        flex: 1 1 30rem;
+        box-shadow: 0.5rem 1.5rem rgba(0,0,0,.1);
+        border-radius: .5rem;
+        padding: 3rem 2rem;
+        position: relative;
+    }
+    .review .box-container .box .fa-quote-right{
+        position: absolute;
+        bottom: 3rem;
+        right: 3rem;
+        font-size: 6rem;
+        color: #eee;
+    }
+    .review .box-container .box .stars i{
+        color: var(--pink);
+        font-size: 2rem;
+
+    }
+    .review .box-container .box .user p{
+        display: flex;
+        align-items: center;
+        padding-top: 2rem;
+    }
+
+    
+    .review .box-container .box .user{
+        display: flex;
+        align-items: center;
+        padding-top: 2rem;
+    }
+   
+    @media  (max-width:991px){
+        html{
+        font-size:55% ;
+        
+    }
+    header .fa-bars{
+        display: flex;
+    }
+    header .navbar{
+        position:absolute ;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #eee;
+        border-top: .1rem solid rgba(0,0,0,.1);
+    }
+    .heading{
+        font-size:3rem ;
+    }
+    .icons-container  .icons h3{
+       
+        font-size: 1.5rem;
+
+    }
+    .icons-container  .icon span{
+        
+        font-size:1.3rem ;
+    }
+    .products .box-container{
+        display: flex;
+    }
+
+    }
+</style>
+<body>
+    <header>
+        <input type="checkbox"  name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+        <a href="#" class="logo">Flower<span>.</span></a>
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#products">Products</a>
+            <a href="#review">Review</a>
+            <a href="#contact">contact</a>
+        </nav>
+        <div class="icons">
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-shopping-cart"></a>
+            <a href="#" class="fas fa-user"></a>
+            
+        </div>
+    </header>
+    <section class="home" id="home">
+        <div class="content">
+            <h3>FRESH FLOWER</h3>
+            <br>
+            <span>Natural & beautiful flowers</span>
+            <br>
+            <br>
+            <a href="#" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <h1 class="heading"><span>About</span>Us</h1>
+        <div class="row">
+            <div class="video-container">
+                <video src="video (2160p).mp4"loop autoplay muted></video>
+                <h3>Best Flower Sellers </h3>
+            </div>
+            <div class="content">
+                <h3>Why Choose Us?</h3>
+                <p>At our shop, we take pride in offering an exquisite and diverse selection of fresh, vibrant, and handcrafted floral arrangements. From elegant bouquets to stunning centerpieces, our skilled florists curate each design with creativity and attention to detail.</p>
+                <p>We source our flowers directly from reputable growers to ensure the highest quality and freshness. Each blossom is carefully selected to create long-lasting arrangements that exude natural beauty.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+        </div>
+    </section>
+    <section class="icons-container">
+        <div class="icons">
+            <img src="icon1.png" alt="">
+            <div  class="info">
+                <h3>FREE  DELIVERY</h3>
+                <span>On All Orders</span>
+            </div>
+        </div>
+        <div class="icons">
+            <img src="icon2.png" alt="">
+            <div  class="info">
+                <h3>10 DAYS RETURN</h3>
+                <span>Money back guarantee</span>
+            </div>
+        </div>
+        <div class="icons">
+            <img src="icon3.png" alt="">
+            <div  class="info">
+                <h3>OFFER & GIFTS</h3>
+                <span>On All Orders</span>
+            </div>
+            <div class="icons">
+                <img src="icon4.png" alt="">
+                <div  class="info">
+                    <h3>SECURE PAYMENTS</h3>
+                    <span>Protected by PayPal</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="products" id="products">
+        <h1 class="heading"> Latest <span>Products</span></h1>
+        <div class="box-container">
+            <div class="box">
+                <span class="discount">-10%</span>
+                <div class="image"></div>
+                <img src="pot.jpg" alt="">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="cart-btn">Add to Cart</a>
+                    <a href="#" class="fas fa-share"></a>
+
+                </div>
+                <div class="content">
+                    <h3>Flower POT</h3>
+                    <div class="price">Rs 750</div>
+                </div>
+    
+            </div>
+           
+
+
+            <div class="box">
+                <span class="discount">-15%</span>
+                <div class="image"></div>
+                <img src="pot2.webp" alt="">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="cart-btn">Add to Cart</a>
+                    <a href="#" class="fas fa-share"></a>
+
+                </div>
+                <div class="content">
+                    <h3>Flower POT</h3>
+                    <div class="price">Rs 650</div>
+                </div>
+            </div>
+           
+
+            <div class="box">
+                <span class="discount">-12%</span>
+                <div class="image"></div>
+                <img src="pot3.jpg" alt="">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="cart-btn">Add to Cart</a>
+                    <a href="#" class="fas fa-share"></a>
+
+                </div>
+                <div class="content">
+                    <h3>Flower POT</h3>
+                    <div class="price">Rs 850</div>
+                </div>
+            </div>
+          
+
+            <div class="box">
+                <span class="discount">-15%</span>
+                <div class="image"></div>
+                <img src="" alt="">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="cart-btn">Add to Cart</a>
+                    <a href="#" class="fas fa-share"></a>
+
+                </div>
+                <div class="content">
+                    <h3>Flower POT</h3>
+                    <div class="price">Rs 750</div>
+                </div>
+            </div>
+           
+
+            <div class="box">
+                <span class="discount">-8%</span>
+                <div class="image"></div>
+                <img src="pot4.jpg" alt="">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="cart-btn">Add to Cart</a>
+                    <a href="#" class="fas fa-share"></a>
+
+                </div>
+                <div class="content">
+                    <h3>Flower POT</h3>
+                    <div class="price">Rs 800</div>
+                </div>
+            </div>
+            
+
+            <div class="box">
+                <span class="discount">-10%</span>
+                <div class="image"></div>
+                <img src="pot5.jpg" alt="">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="cart-btn">Add to Cart</a>
+                    <a href="#" class="fas fa-share"></a>
+
+                </div>
+                <div class="content">
+                    <h3>Flower POT</h3>
+                    <div class="price">Rs 950</div>
+                </div>
+            </div>
+          
+
+            <div class="box">
+                <span class="discount">-17%</span>
+                <div class="image"></div>
+                <img src="pot6.jpg" alt="">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="cart-btn">Add to Cart</a>
+                    <a href="#" class="fas fa-share"></a>
+
+                </div>
+                <div class="content">
+                    <h3>Flower POT</h3>
+                    <div class="price">Rs 1750</div>
+                </div>
+    
+            </div>
+           
+           
+        
+        </div>
+    </section>
+    <section class="review" id="review">
+        <h1 class="heading">Customer's<span>Review</span></h1>
+        <dic class="box-container">
+            <div class="box">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>I recently had the pleasure of ordering a beautiful bouquet , and I am absolutely thrilled with the experience. From start to finish, everything was flawless, and the end result was a true floral dream come true!</p>
+                <div class="user">
+                    <img src="ppl1.jpg" alt="">
+                    <div class="user-info">
+                        <h3>John</h3>
+                        <span>Happy Customer</span>
+                    </div>
+                </div>
+                <span class="fas-fa-quote-right"></span>
+            </div>
+
+            <div class="box">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>he delivery service was punctual, and the bouquet arrived in pristine condition. When my friend received it, she was over the moon! The arrangement was breathtakingly beautiful, with fresh and fragrant blooms artfully arranged.</p>
+                <div class="user">
+                    <img src="ppl2.jpg" alt="">
+                    <div class="user-info">
+                        <h3>John</h3>
+                        <span>Happy Customer</span>
+                    </div>
+                </div>
+                <span class="fas-fa-quote-right"></span>
+            </div>
+
+            <div class="box">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>The customer service was top-notch. The team  was incredibly helpful and responsive to my queries, making sure every detail was just right. They even suggested a lovely complementary ribbon that added an elegant touch to the bouquet.</p>
+                <div class="user">
+                    <img src="ppl3.jpg" alt="">
+                    <div class="user-info">
+                        <h3>Selina</h3>
+                        <span>Happy Customer</span>
+                    </div>
+                </div>
+                <span class="fas-fa-quote-right"></span>
+            </div>
+
+            <div class="box">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p> cannot recommend [Your Flower Shop Name] enough! Their dedication to quality, customer satisfaction, and their exquisite floral artistry make them the go-to flower shop for any occasion. I'll definitely be a loyal customer and look forward to ordering more of their floral masterpieces in the future.</p>
+                <div class="user">
+                    <img src="ppl4.jpg" alt="">
+                    <div class="user-info">
+                        <h3>Harry</h3>
+                        <span>Happy Customer</span>
+                    </div>
+                </div>
+                <span class="fas-fa-quote-right"></span>
+            </div>
+
+            
+        </dic>
+
+    </section>
+</body>
+</html>
